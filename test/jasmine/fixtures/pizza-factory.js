@@ -1,13 +1,12 @@
 define(['src/pizza'], function(pizza) {
   
-  var factoryDoughType = 'flatbread';
-
   return {
+    doughType:'flatbread',
     createCheese: function(size) {
       var cheesePizza = Object.create(pizza);
-      cheesePizza.doughType = factoryDoughType;
+      cheesePizza.doughType = this.doughType;
       cheesePizza.size = size || cheesePizza.size;
-      cheesePizza.ingredients = ['mozerella', 'parmesan', 'tomato sauce'];
+      cheesePizza.ingredients = ['mozzarella', 'parmesan', 'tomato sauce'];
       return cheesePizza;
     }
   };

@@ -1,7 +1,9 @@
-define(['expose!src/pizza-builder', 'expose!src/pizza-factory', 'expose!src/pizza-baker'], 
-        function(builder, factory, baker) {
+define(['expose!src/pizza-builder', 'expose!src/pizza-factory', 
+        'expose!src/pizza-baker', 'expose!src/pizza',
+        'expose!src/pizza-store-context-sicilian'], 
+        function(builder, factory, baker, pizza, context) {
   
-  describe('Expose Plugin', function() {
+  describe('RequireJS Expose Plugin', function() {
 
     it('should provide module loaded with expose! with usage as expected', function() {
       expect(builder.getCheese()).toEqual(jasmine.any(String));
@@ -49,6 +51,15 @@ define(['expose!src/pizza-builder', 'expose!src/pizza-factory', 'expose!src/pizz
 
       expect(builder.getCheese(pizzaSize)).toEqual(fakedReturn);
       expect(factory.createCheese).toHaveBeenCalledWith(pizzaSize);
+    });
+
+    it('should not attach require_exposed_dependencies to module without dependencies in define()', function() {
+      expect(pizza.hasOwnProperty('require_exposed_dependencies')).toEqual(false);
+    });
+
+    it('should properly parse dependencies defined on new lines', function() {
+      var dependencies = context.require_exposed_dependencies;
+      expect(Object.keys(dependencies).length).toEqual(4);
     });
 
   });
