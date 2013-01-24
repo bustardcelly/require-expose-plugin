@@ -11,6 +11,7 @@ require-expose-plugin is a [RequireJS](http://requirejs.org/ 'RequireJS') loader
         myModule.foo('hello', 'world');
         expect(dependency).toHaveBeenCalledWith('hello, world');
       });
+      
     });
 
 ### Caveats
