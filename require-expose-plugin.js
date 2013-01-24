@@ -31,7 +31,7 @@ define(function() {
 
           if(dependencyMatch && dependencyMatch.length > 0) {
             // i know eval() is evil, 
-            // but the regex to determine developers style of dependency declaration - including breaks - is too crazy.
+            // but the regex to determine developers' style of dependency declaration - including breaks - is too crazy.
             dependencyList = eval(dependencyMatch[0]);
             require(dependencyList, function() {
               var map = {},
