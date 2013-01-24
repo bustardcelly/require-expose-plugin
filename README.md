@@ -1,0 +1,1 @@
+RequireJS plugin to expose of dependency module references for stubbing/mocking purposes in unit tests.
