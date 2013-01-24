@@ -1,0 +1,38 @@
+<!DOCTYPE html">
+<html>
+  <head>
+    <title>require-expose-plugin Spec Runner</title>
+    <link rel="stylesheet" type="text/css" href="lib/jasmine-1.2.0/jasmine.css">
+    <script src="../../../lib/require-2.1.0.min.js"></script>
+    <script src="lib/jasmine-1.2.0/jasmine.js"></script>
+    <script src="lib/jasmine-1.2.0/jasmine-html.js"></script>
+    <script src="lib/jasmine.async.min.js"></script>
+    <script src="lib/sinon-1.5.0.js"></script>
+    <script>
+      (function(window, require) {
+
+        require.config({
+          baseUrl: ".",
+          paths: {
+            "spec": ".",
+            "expose": "../../../require-expose-plugin"
+          }
+        });
+
+        require( ['spec/test.spec'], 
+                  function() {
+              
+          var jasmineEnv = jasmine.getEnv(),
+              htmlReporter = new jasmine.HtmlReporter();
+              
+          jasmineEnv.updateInterval = 1000;
+          jasmineEnv.addReporter(htmlReporter);
+          jasmineEnv.execute();
+
+        });
+
+      }(window, requirejs));
+    </script>
+</head>
+<body></body>
+</html>
