@@ -1,7 +1,7 @@
 define(function() {
 
-  var requireDependencyOpenChar = '[',
-      requireDependencyClosedChar = ']';
+  // Match anything between [] - presumably and hopefully the dependency listing of a module.
+  var dependencyArrayRegex = /\[([^\]]+)\]/;
 
   function resolvePath(resource, pathMap) {
     var rootDirIndex = resource.indexOf('/'),
@@ -26,13 +26,13 @@ define(function() {
         }
         else {
           var text = xhr.responseText,
-              openIndex = text.indexOf(requireDependencyOpenChar),
-              closeIndex = text.indexOf(requireDependencyClosedChar, openIndex),
+              dependencyMatch = dependencyArrayRegex.exec(text),
               dependencyList;
 
-          if(openIndex > -1 && closeIndex > -1) {
-            // i know eval() is evil, but the regex to determine developers style of dependency declaration - including breaks - is too crazy.
-            dependencyList = eval(text.substr(openIndex, closeIndex - (openIndex-1)));
+          if(dependencyMatch && dependencyMatch.length > 0) {
+            // i know eval() is evil, 
+            // but the regex to determine developers style of dependency declaration - including breaks - is too crazy.
+            dependencyList = eval(dependencyMatch[0]);
             require(dependencyList, function() {
               var map = {},
                   i, 
@@ -60,7 +60,7 @@ define(function() {
                     // success
                     function(dependencies) {
                       req([resourceName], function(module) {
-                        module.require_expose_dependencies = dependencies;
+                        module.require_exposed_dependencies = dependencies;
                         loadDelegate(module);
                       });
                     }, 
