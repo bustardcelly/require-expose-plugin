@@ -48,7 +48,7 @@ From the example above, you have access to the _'src/my-dependency'_ module with
 
     var dependency = myModule.require_exposed_dependencies['src/my-dependency'];
 
-The example utilizes [Jasmine](http://pivotal.github.com/jasmine/) ot spy on _src/my-dependency:bar_, but you can choose whichever unit testing framework you like. require-expose-plugin does not utilize any specific unit testing framework; it simply exposes dependency references. 
+The example utilizes [Jasmine](http://pivotal.github.com/jasmine/) to spy on _src/my-dependency:bar_, but you can choose whichever unit testing framework you like. require-expose-plugin does not utilize any specific unit testing framework; it simply exposes dependency references. 
 
 **[note]** Just be aware that if the unit testing framework you choose modifies the object when wrapping for stub/mock/spy, that you unwrap on teardown or before exiting the expectation as it may leave side affects for other modules who do not want to have the dependency wrapped.
 
