@@ -57,4 +57,4 @@ The intent of require-expose-plugin is to aid in stubbing/mocking/spying a depen
 It is not the intent of _expose!_ to be used in the wild on a production-level application/site. Not saying it can't be; not guarenteeing it. As well, I feel that it's use for such purpose other than to stub/mock/spy for testing defeats the purpose of module development. Not to say that using _expose!_ to access dependencies other than to stub/mock/spy is inherently wrong... just a little smelly.
 
 ### Caveats
-require-expose-plugin utilizes _Array.prototype.indexOf_ and _XMLHttpRequest_. As such, it is only supported in all modern browsers and IE9+.
+require-expose-plugin utilizes _Array.prototype.indexOf_ and _XMLHttpRequest_. As such, it is only supported in all modern browsers/runtime-environments and IE9+.
