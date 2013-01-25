@@ -1,5 +1,7 @@
 # require-expose-plugin
 
+> expose! dependencies for your tests
+
 require-expose-plugin is a [RequireJS](http://requirejs.org/ 'RequireJS') loader plugin to expose dependency module references for stubbing/mocking/spying purposes in unit tests. It provides a means to access the loaded dependecies for a target module by prepending the module path with 'expose!'.
 
 _src/my-dependency.js_ - a dependency
