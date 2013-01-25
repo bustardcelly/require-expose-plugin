@@ -46,7 +46,15 @@ From the example above, you have access to the _'src/my-dependency'_ module with
 
     var dependency = myModule.require_exposed_dependencies['src/my-dependency'];
 
-The example utilizes [Jasmine](http://pivotal.github.com/jasmine/), but you can choose whichever unit testing framework you like. require-expose-plugin does not utilize any specific unit testing framework; it simply exposes dependency references.
+The example utilizes [Jasmine](http://pivotal.github.com/jasmine/) ot spy on _src/my-dependency:bar_, but you can choose whichever unit testing framework you like. require-expose-plugin does not utilize any specific unit testing framework; it simply exposes dependency references. 
+
+**[note]** Just be aware that if the unit testing framework you choose modifies the object when wrapping for stub/mock/spy, that you unwrap on teardown or before exiting the expectation as it may leave side affects for other modules who do not want to have the dependency wrapped.
+
+## Intent
+
+The intent of require-expose-plugin is to aid in stubbing/mocking/spying a dependency module of a target resource module. Dependency references, themselves, are not exposed on a module by [RequireJS](http://requirejs.org/ 'RequireJS'). As such, using the _expose!_ loader plugin will allow access to dependencies by adding a property to the target module: _require_exposed_dependencies_.
+
+It is not the intent of _expose!_ to be used in the wild on a production-level application/site. Not saying it can't be; not guarenteeing it. As well, I feel that it's use for such purpose other than to stub/mock/spy for testing defeats the purpose of module development. Not to say that using _expose!_ to access dependencies other than to stub/mock/spy is inherently wrong... just a little smelly.
 
 ### Caveats
 require-expose-plugin utilizes _Array.prototype.indexOf_ and _XMLHttpRequest_. As such, it is only supported in all modern browsers and IE9+.
